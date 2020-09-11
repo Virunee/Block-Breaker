@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3833342042862222324}
   - component: {fileID: 3833342042862222325}
   - component: {fileID: 3833342042862222313}
-  - component: {fileID: 5526587019706296919}
+  - component: {fileID: 1388365460736391527}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -138,11 +138,8 @@ MonoBehaviour:
   xLaunch: 2
   yLaunch: 15
   ballSounds:
-  - {fileID: 8300000, guid: 80abb44512058d946b18572831a8a93a, type: 3}
   - {fileID: 8300000, guid: 4e4de1f80bb5f924dad3e33229b46a1d, type: 3}
-  - {fileID: 8300000, guid: f5d874cb9e3c39543be5200433918118, type: 3}
-  - {fileID: 8300000, guid: 07fcf26a1dfb0e84eb0d3972141a0719, type: 3}
---- !u!82 &5526587019706296919
+--- !u!82 &1388365460736391527
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +150,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
