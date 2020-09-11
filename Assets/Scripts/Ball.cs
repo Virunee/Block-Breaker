@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
@@ -9,15 +7,21 @@ public class Ball : MonoBehaviour
     [SerializeField] float xLaunch = 2f;
     [SerializeField] float yLaunch = 15f;
 
+    [SerializeField] AudioClip[] ballSounds;
+
     //State
     Vector2 paddleToBallVector;
     bool hasStarted = false;
+
+    // Cached component references
+    AudioSource myAudioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         //Calculate the initial distance between the paddle and the ball
         paddleToBallVector = transform.position - paddle1.transform.position;
+        myAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -43,6 +47,15 @@ public class Ball : MonoBehaviour
         {
             hasStarted = true;
             GetComponent<Rigidbody2D>().velocity = new Vector2(xLaunch, yLaunch);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(hasStarted)
+        {
+            AudioClip clip = ballSounds[Random.Range(0, ballSounds.Length)];
+            myAudioSource.PlayOneShot(clip);
         }
     }
 }
