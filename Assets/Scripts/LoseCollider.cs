@@ -19,7 +19,7 @@ public class LoseCollider : MonoBehaviour
             SceneManager.LoadScene("Game Over");
         } else {
             level.ballLost();
-            Destroy(collision.attachedRigidbody);
+            Destroy(collision.gameObject);
         }
         
     }

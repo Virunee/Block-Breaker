@@ -71,13 +71,8 @@ public class Ball : MonoBehaviour
             Random.Range(0f, randomFactor)
             );
 
-        if(hasStarted)
+        if (hasStarted)
         {
-            if(collision.otherRigidbody.name.Contains("Ball"))
-            {
-                Physics2D.IgnoreCollision(collision.otherCollider, myCollider);
-                return;
-            }
             AudioClip clip = ballSounds[Random.Range(0, ballSounds.Length)];
             myAudioSource.PlayOneShot(clip);
             myRigidbody2D.velocity += velocityTweak;

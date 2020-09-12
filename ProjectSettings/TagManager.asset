@@ -8,6 +8,7 @@ TagManager:
   - Unbreakable
   - Ball Block
   - Temp Ball
+  - Main Ball
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Ball
   - 
   - 
   - 
