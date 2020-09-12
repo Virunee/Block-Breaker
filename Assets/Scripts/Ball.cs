@@ -18,6 +18,7 @@ public class Ball : MonoBehaviour
     AudioSource myAudioSource;
     Rigidbody2D myRigidbody2D;
     CircleCollider2D myCollider;
+    Level level;
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +26,15 @@ public class Ball : MonoBehaviour
         myAudioSource = GetComponent<AudioSource>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<CircleCollider2D>();
+        level = FindObjectOfType<Level>();
+
         if (gameObject.tag != "Temp Ball")
         {
             //Calculate the initial distance between the paddle and the ball
             paddleToBallVector = transform.position - paddle1.transform.position;
         }
+
+        level.countBalls();
         
     }
 

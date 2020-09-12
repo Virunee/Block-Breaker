@@ -6,6 +6,7 @@ public class Level : MonoBehaviour
 {
     // parameters
     [SerializeField] int breakableBlocks; // serialized for debugging purposes
+    [SerializeField] int numberOfBalls; //TODO Serialized for debugging
 
     // cached references
     SceneLoader sceneLoader;
@@ -18,6 +19,21 @@ public class Level : MonoBehaviour
     public void countBlocks()
     {
         breakableBlocks++;
+    }
+
+    public void countBalls()
+    {
+        numberOfBalls++;
+    }
+
+    public void ballLost()
+    {
+        numberOfBalls--;
+    }
+
+    public int NumberOfBalls()
+    {
+        return numberOfBalls;
     }
 
     public void blockDestroyed()
