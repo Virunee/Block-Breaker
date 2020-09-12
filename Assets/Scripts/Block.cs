@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,14 +23,19 @@ public class Block : MonoBehaviour
 
     private void Start()
     {
-        level = FindObjectOfType<Level>();
         gameStatus = FindObjectOfType<GameSession>();
+        CountBreakableBlocks();
+    }
+
+    private void CountBreakableBlocks()
+    {
+        level = FindObjectOfType<Level>();
         if (tag == "Breakable")
         {
-            level.countBreakableBlocks();
+            level.countBlocks();
         }
-            
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(tag == "Breakable")
@@ -46,7 +52,16 @@ public class Block : MonoBehaviour
         {
             gameStatus.addPointsToScore();
             destroyBlock();
+        } else
+        {
+            ShowNextHitSprite();
         }
+    }
+
+    private void ShowNextHitSprite()
+    {
+        int spriteIndex = timesHit - 1;
+        GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
     }
 
     private void destroyBlock()
