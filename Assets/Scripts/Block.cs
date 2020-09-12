@@ -9,6 +9,9 @@ public class Block : MonoBehaviour
     [SerializeField] AudioClip breakSound;
     [SerializeField] GameObject blockSparklesVFX;
     [SerializeField] Sprite[] hitSprites;
+    [SerializeField] GameObject ball;
+    [SerializeField] float ballBlockXLaunch = 2f;
+    [SerializeField] float ballBlockYLaunch = 15f;
 
     // cached reference
     Level level;
@@ -29,7 +32,7 @@ public class Block : MonoBehaviour
     private void CountBreakableBlocks()
     {
         level = FindObjectOfType<Level>();
-        if (tag == "Breakable")
+        if (tag == "Breakable" || tag == "Ball Block")
         {
             level.countBlocks();
         }
@@ -37,7 +40,7 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(tag == "Breakable")
+        if(tag == "Breakable" || tag == "Ball Block")
         {
             HandleHit();
         }
@@ -50,6 +53,10 @@ public class Block : MonoBehaviour
         timesHit++;
         if (timesHit >= maxHits)
         {
+            if(tag == "Ball Block")
+            {
+                createNewBall();
+            }
             gameStatus.addPointsToScore();
             destroyBlock();
         } else
@@ -84,5 +91,12 @@ public class Block : MonoBehaviour
     {
         GameObject sparkles = Instantiate(blockSparklesVFX, transform.position, transform.rotation);
         Destroy(sparkles, 2f);
+    }
+
+    private void createNewBall()
+    {
+        GameObject newBall = Instantiate(ball, transform.position, transform.rotation);
+        newBall.GetComponent<Rigidbody2D>().velocity = new Vector2(ballBlockXLaunch, ballBlockYLaunch);
+        newBall.tag = "Temp Ball";
     }
 }

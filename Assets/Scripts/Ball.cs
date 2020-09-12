@@ -17,20 +17,26 @@ public class Ball : MonoBehaviour
     // Cached component references
     AudioSource myAudioSource;
     Rigidbody2D myRigidbody2D;
+    CircleCollider2D myCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Calculate the initial distance between the paddle and the ball
-        paddleToBallVector = transform.position - paddle1.transform.position;
         myAudioSource = GetComponent<AudioSource>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
+        myCollider = GetComponent<CircleCollider2D>();
+        if (gameObject.tag != "Temp Ball")
+        {
+            //Calculate the initial distance between the paddle and the ball
+            paddleToBallVector = transform.position - paddle1.transform.position;
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!hasStarted)
+        if(!hasStarted && gameObject.tag != "Temp Ball")
         {
             LockBallToPaddle(hasStarted);
             LaunchOnClick();
@@ -62,6 +68,11 @@ public class Ball : MonoBehaviour
 
         if(hasStarted)
         {
+            if(collision.otherRigidbody.name.Contains("Ball"))
+            {
+                Physics2D.IgnoreCollision(collision.otherCollider, myCollider);
+                return;
+            }
             AudioClip clip = ballSounds[Random.Range(0, ballSounds.Length)];
             myAudioSource.PlayOneShot(clip);
             myRigidbody2D.velocity += velocityTweak;

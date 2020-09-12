@@ -30,6 +30,7 @@ public class GameSession : MonoBehaviour
     private void Start()
     {
         updateScoreText();
+
     }
 
     // Update is called once per frame

@@ -137,6 +137,7 @@ MonoBehaviour:
   paddle1: {fileID: 0}
   xLaunch: 2
   yLaunch: 15
+  randomFactor: 0.2
   ballSounds:
   - {fileID: 8300000, guid: 4e4de1f80bb5f924dad3e33229b46a1d, type: 3}
 --- !u!82 &1388365460736391527
