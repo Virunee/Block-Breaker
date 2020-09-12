@@ -6,12 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour {
 
     // cached references
-    GameStatus gameStatus;
-
-    private void Start()
-    {
-        gameStatus = FindObjectOfType<GameStatus>();
-    }
+    GameSession gameStatus;
 
     public void LoadNextScene()
     {
@@ -21,8 +16,9 @@ public class SceneLoader : MonoBehaviour {
 
     public void LoadStartScene()
     {
-        gameStatus.resetScore();
         SceneManager.LoadScene(0);
+        gameStatus = FindObjectOfType<GameSession>();
+        gameStatus.resetGame();
     }
 
     public void QuitGame()
